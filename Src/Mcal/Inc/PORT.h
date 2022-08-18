@@ -2,45 +2,26 @@
 
  *  FILE DESCRIPTION
  *  -------------------------------------------------------------------------------------------------------------------
- *         File:  IntCtrl_Cfg.h
+ *         File:  <PORT.h>
  *       Module:  -
  *
  *  Description:  <Write File DESCRIPTION here>     
  *  
  *********************************************************************************************************************/
-#ifndef INTCTRL_CFG_H
-#define INTCTRL_CFG_H
+#ifndef PORT_H
+#define PORT_H
 
 /**********************************************************************************************************************
  * INCLUDES
  *********************************************************************************************************************/
-
-
+#include "PORT_Cfg.h"
+#include "DIO.h"
+#include "Mcu_Hw.h"
 /**********************************************************************************************************************
  *  GLOBAL CONSTANT MACROS
  *********************************************************************************************************************/
-#define APINT_xxx                        0
-#define APINT_xxy                        1
-#define APINT_xyy                        0                                               
-#define APINT_yyy                        0
 
-#define En_GPIO_PORTA                    0
-#define En_GPIO_PORTB                    1
-#define En_GPIO_PORTC                    0
-#define En_GPIO_PORTD                    0
-#define En_GPIO_PORTE                    0
 
-#define G_PRI_GPIO_PORTA                   0
-#define G_PRI_GPIO_PORTB                   3
-#define G_PRI_GPIO_PORTC                   0
-#define G_PRI_GPIO_PORTD                   0
-#define G_PRI_GPIO_PORTE                   0
-
-#define S_PRI_GPIO_PORTA                   0
-#define S_PRI_GPIO_PORTB                   1
-#define S_PRI_GPIO_PORTC                   0
-#define S_PRI_GPIO_PORTD                   0
-#define S_PRI_GPIO_PORTE                   0
 /**********************************************************************************************************************
  *  GLOBAL FUNCTION MACROS
  *********************************************************************************************************************/
@@ -49,11 +30,28 @@
 /**********************************************************************************************************************
  *  GLOBAL DATA TYPES AND STRUCTURES
  *********************************************************************************************************************/
-
-
- 
-#endif  /* INTCTRL_CFG_H */
+typedef struct {
+   uint8 PortPin_D_A;           // digital: 1,  Analog 2 
+   uint8 PortPinMode;           //0: DIO other num like in datasheet
+   uint8 PortPinLevelValue;            // initial value of pin if output
+   uint8 PortPinDirection;             // 0 input , 1 output
+   uint8 PortPinInternalAttach;                // 0 non , 1 pullup, 2 pulldown, 3 open  drain
+   uint8 PortPinOutputCurrent;              // 2 , 4, 8 mA
+}pinConfig;
 
 /**********************************************************************************************************************
- *  END OF FILE: IntCtrl_Cfg.h
+ *  GLOBAL DATA PROTOTYPES
+ *********************************************************************************************************************/
+
+ 
+/**********************************************************************************************************************
+ *  GLOBAL FUNCTION PROTOTYPES
+ *********************************************************************************************************************/
+void GPIO_init();
+void Port_init(DIO_PortType port,DIO_ChannelType pin,pinConfig *pinconfigp);
+ 
+#endif  /* FILE_NAME_H */
+
+/**********************************************************************************************************************
+ *  END OF FILE: PORT.h
  *********************************************************************************************************************/

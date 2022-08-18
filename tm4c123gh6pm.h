@@ -1,96 +1,50 @@
-/**********************************************************************************************************************
+//*****************************************************************************
+//
+// tm4c123gh6pm.h - TM4C123GH6PM Register Definitions
+//
+// Copyright (c) 2013-2014 Texas Instruments Incorporated.  All rights reserved.
+// Software License Agreement
+// 
+//   Redistribution and use in source and binary forms, with or without
+//   modification, are permitted provided that the following conditions
+//   are met:
+// 
+//   Redistributions of source code must retain the above copyright
+//   notice, this list of conditions and the following disclaimer.
+// 
+//   Redistributions in binary form must reproduce the above copyright
+//   notice, this list of conditions and the following disclaimer in the
+//   documentation and/or other materials provided with the  
+//   distribution.
+// 
+//   Neither the name of Texas Instruments Incorporated nor the names of
+//   its contributors may be used to endorse or promote products derived
+//   from this software without specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+// 
+// This is part of revision 2.1.0.12573 of the Tiva Firmware Development Package.
+//
+//*****************************************************************************
 
- *  FILE DESCRIPTION
- *  -------------------------------------------------------------------------------------------------------------------
- *         File:  Mcu_Hw.h
- *       Module:  Mcu_Hw
- *
- *  Description:  header file for Registers definition    
- *  
- *********************************************************************************************************************/
-#ifndef MCU_HW_H
-#define MCU_HW_H
+#ifndef __TM4C123GH6PM_H__
+#define __TM4C123GH6PM_H__
 
-/**********************************************************************************************************************
- * INCLUDES
- *********************************************************************************************************************/
-#include "Std_Types.h"
-
-/**********************************************************************************************************************
- *  GLOBAL DATA TYPES AND STRUCTURES
- *********************************************************************************************************************/
-typedef struct 
-{
-    uint32 VECACT   :8;
-    uint32          :3;
-    uint32 RETBASE  :1;
-    //uint32 VECPEND  :3;
-    uint32 VECPEND  :4;
-    uint32          :2;
-    uint32 ISRPEND  :1;
-    uint32 ISRPRE   :1;
-    uint32          :1;
-    uint32 PENDSTCLR:1;
-    uint32 PENDSTSET:1;
-    uint32 UNPENDSV :1;
-    uint32 PENDSV   :1;
-    uint32          :2;
-    uint32 NMISET   :1; 
-}INTCTRL_BF;
-typedef union 
-{
-    uint32 R;
-    INTCTRL_BF B;
-}INTCTRL_Tag;
-typedef struct{
-    uint32   :5;
-    uint32  INTA :3;
-    uint32  :5;
-    uint32 INTB  :3;
-    uint32    :5;
-    uint32  INTC  :3;
-    uint32   :5;
-    uint32  INTD  :3;
-}PRI_BF;
-typedef union
-{
-    uint32  R;
-    PRI_BF  B;
-}PRI_Tag;
-
-
-
-
-
-/**********************************************************************************************************************
- *  GLOBAL CONSTANT MACROS
- *********************************************************************************************************************/
-#define CORTEXM4_PERI_BASE_ADDRESS             0xE000E000
-#define APINT                                  *((volatile uint32*)(CORTEXM4_PERI_BASE_ADDRESS+0xD0C))
-#define INTCTRL                                *((volatile INTCTRL_Tag*)(CORTEXM4_PERI_BASE_ADDRESS+0xD04))
-#define EN0                                    *((volatile uint32*)(CORTEXM4_PERI_BASE_ADDRESS+0x100))
-#define EN1                                    *((volatile uint32*)(CORTEXM4_PERI_BASE_ADDRESS+0x104))
-#define EN2                                    *((volatile uint32*)(CORTEXM4_PERI_BASE_ADDRESS+0x108))
-#define EN3                                   *((volatile uint32*)(CORTEXM4_PERI_BASE_ADDRESS+0x10C))
-#define EN4                                    *((volatile uint32*)(CORTEXM4_PERI_BASE_ADDRESS+0x110))
-#define PRI0                                   *((volatile PRI_Tag*)(CORTEXM4_PERI_BASE_ADDRESS+0x400))
-#define PRI1                                   *((volatile PRI_Tag*)(CORTEXM4_PERI_BASE_ADDRESS+0x404))
-#define PRI2                                   *((volatile PRI_Tag*)(CORTEXM4_PERI_BASE_ADDRESS+0x408))
-#define PRI3                                   *((volatile PRI_Tag*)(CORTEXM4_PERI_BASE_ADDRESS+0x40C))
-#define PRI4                                   *((volatile PRI_Tag*)(CORTEXM4_PERI_BASE_ADDRESS+0x410))
-#define PRI5                                   *((volatile PRI_Tag*)(CORTEXM4_PERI_BASE_ADDRESS+0x414))
-#define PRI6                                   *((volatile PRI_Tag*)(CORTEXM4_PERI_BASE_ADDRESS+0x418))
-#define PRI7                                   *((volatile PRI_Tag*)(CORTEXM4_PERI_BASE_ADDRESS+0x41C))
-#define PRI8                                   *((volatile PRI_Tag*)(CORTEXM4_PERI_BASE_ADDRESS+0x420))
-#define PRI9                                   *((volatile PRI_Tag*)(CORTEXM4_PERI_BASE_ADDRESS+0x424))
-#define PRI10                                  *((volatile PRI_Tag*)(CORTEXM4_PERI_BASE_ADDRESS+0x428))
-#define PRI11                                  *((volatile PRI_Tag*)(CORTEXM4_PERI_BASE_ADDRESS+0x42C))
-#define PRI12                                   *((volatile PRI_Tag*)(CORTEXM4_PERI_BASE_ADDRESS+0x430))
-#define PRI13                                  *((volatile PRI_Tag*)(CORTEXM4_PERI_BASE_ADDRESS+0x434))
-#define PRI14                                   *((volatile PRI_Tag*)(CORTEXM4_PERI_BASE_ADDRESS+0x438))
-#define PRI15                                   *((volatile PRI_Tag*)(CORTEXM4_PERI_BASE_ADDRESS+0x43C))
-
-
+//*****************************************************************************
+//
+// Interrupt assignments
+//
+//*****************************************************************************
 #define INT_GPIOA               16          // GPIO Port A
 #define INT_GPIOB               17          // GPIO Port B
 #define INT_GPIOC               18          // GPIO Port C
@@ -12901,16 +12855,16 @@ typedef union
                                             // (RM) mode
 #define NVIC_FPDSC_RMODE_RZ     0x00C00000  // Round towards Zero (RZ) mode
 
+//*****************************************************************************
+//
+// The following definitions are deprecated.
+//
+//*****************************************************************************
+#ifndef DEPRECATED
+#define SYSCTL_DID0_CLASS_BLIZZARD                                            \
+                                0x00050000  // Tiva(TM) C Series TM4C123-class
+                                            // microcontrollers
 
-/**********************************************************************************************************************
- *  GLOBAL DATA PROTOTYPES
- *********************************************************************************************************************/
+#endif
 
- 
-
- 
-#endif  /* MCU_HW_H */
-
-/**********************************************************************************************************************
- *  END OF FILE: Mcu_Hw.h
- *********************************************************************************************************************/
+#endif // __TM4C123GH6PM_H__

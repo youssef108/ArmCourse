@@ -1,49 +1,61 @@
 /**********************************************************************************************************************
+
  *  FILE DESCRIPTION
  *  -------------------------------------------------------------------------------------------------------------------
- *         File:  Std_Types.h
- *    Component:  -
+ *         File:  <DIO.h>
  *       Module:  -
  *
- *  Description:  Provision of Standard Types
- *
+ *  Description:  <dio driver >     
+ *  
  *********************************************************************************************************************/
+#ifndef DIO_H
+#define DIO_H
 
-
-
-#ifndef STD_TYPES_H
-#define STD_TYPES_H
 
 /**********************************************************************************************************************
  * INCLUDES
  *********************************************************************************************************************/
-
-# include "Platform_Types.h"
-# include "Compiler.h"
+#include "Platform_Types.h"
+#include "Mcu_Hw.h"
 
 /**********************************************************************************************************************
  *  GLOBAL CONSTANT MACROS
  *********************************************************************************************************************/
 
-# define STD_HIGH     1u /* Physical state 5V or 3.3V */
-# define STD_LOW      0u /* Physical state 0V */
 
-# define STD_ACTIVE   1u /* Logical state active */
-# define STD_IDLE     0u /* Logical state idle */
+/**********************************************************************************************************************
+ *  GLOBAL FUNCTION MACROS
+ *********************************************************************************************************************/
 
-# define STD_ON       1u
-# define STD_OFF      0u
 
 /**********************************************************************************************************************
  *  GLOBAL DATA TYPES AND STRUCTURES
  *********************************************************************************************************************/
+enum DIO_ChannelType{
+PIN0,PIN1,PIN2,PIN3,PIN4,PIN5,PIN6,PIN7
+};
 
-typedef uint8 Std_ReturnType;
-#define E_OK          0u
-#define E_NOT_OK      1u
+enum DIO_PortType{
+PORTA=1,PORTB,PORTC,PORTD,PORTE,PORTF
+};
 
+enum DIO_LevelType{
+Low,High
+};
 
+typedef enum DIO_ChannelType DIO_ChannelType;
+typedef enum DIO_PortType DIO_PortType;
+typedef enum DIO_LevelType DIO_LevelType;
+typedef uint8 DIO_PortLevelType;
 
+#define PIN7_OFFSET                        0x0200
+#define PIN6_OFFSET                        0x0100
+#define PIN5_OFFSET                        0x0080
+#define PIN4_OFFSET                        0x0040
+#define PIN3_OFFSET                        0x0020
+#define PIN2_OFFSET                        0x0010
+#define PIN1_OFFSET                        0x0008
+#define PIN0_OFFSET                        0x0004
 /**********************************************************************************************************************
  *  GLOBAL DATA PROTOTYPES
  *********************************************************************************************************************/
@@ -52,9 +64,16 @@ typedef uint8 Std_ReturnType;
 /**********************************************************************************************************************
  *  GLOBAL FUNCTION PROTOTYPES
  *********************************************************************************************************************/
+DIO_LevelType DIO_ReadChannel(DIO_PortType port,DIO_ChannelType pin);
+void Dio_writeChannel(DIO_PortType port,DIO_ChannelType pin,DIO_LevelType v);
+DIO_PortLevelType Dio_readPort(DIO_PortType port);
+void Dio_WritePort(DIO_PortType port,DIO_PortLevelType v);
+void Dio_FlipChannel(DIO_PortType port,DIO_ChannelType pin);
 
 
-#endif /* STD_TYPES_H */
+ 
+#endif  /* FILE_NAME_H */
+
 /**********************************************************************************************************************
  *  END OF FILE: Std_Types.h
  *********************************************************************************************************************/

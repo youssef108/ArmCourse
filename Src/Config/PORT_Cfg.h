@@ -2,14 +2,14 @@
 
  *  FILE DESCRIPTION
  *  -------------------------------------------------------------------------------------------------------------------
- *         File:  IntCtrl_Cfg.h
+ *         File:  <Write File Name>
  *       Module:  -
  *
  *  Description:  <Write File DESCRIPTION here>     
  *  
  *********************************************************************************************************************/
-#ifndef INTCTRL_CFG_H
-#define INTCTRL_CFG_H
+#ifndef PORT_cfg
+#define PORT_cfg
 
 /**********************************************************************************************************************
  * INCLUDES
@@ -19,28 +19,13 @@
 /**********************************************************************************************************************
  *  GLOBAL CONSTANT MACROS
  *********************************************************************************************************************/
-#define APINT_xxx                        0
-#define APINT_xxy                        1
-#define APINT_xyy                        0                                               
-#define APINT_yyy                        0
 
-#define En_GPIO_PORTA                    0
-#define En_GPIO_PORTB                    1
-#define En_GPIO_PORTC                    0
-#define En_GPIO_PORTD                    0
-#define En_GPIO_PORTE                    0
+#define PortPinMode                        0 //0: DIO other num like in datasheet
+#define PortPinLevelValue                  0 // initial value of pin if output
+#define PortPinDirection                   0 // 0 input , 1 output
+#define PortPinInternalAttach              0 // 0 non , 1 pullup, 2 pulldown, 3 open  drain
+#define PortPinOutputCurrent               2 // mA
 
-#define G_PRI_GPIO_PORTA                   0
-#define G_PRI_GPIO_PORTB                   3
-#define G_PRI_GPIO_PORTC                   0
-#define G_PRI_GPIO_PORTD                   0
-#define G_PRI_GPIO_PORTE                   0
-
-#define S_PRI_GPIO_PORTA                   0
-#define S_PRI_GPIO_PORTB                   1
-#define S_PRI_GPIO_PORTC                   0
-#define S_PRI_GPIO_PORTD                   0
-#define S_PRI_GPIO_PORTE                   0
 /**********************************************************************************************************************
  *  GLOBAL FUNCTION MACROS
  *********************************************************************************************************************/
@@ -51,9 +36,18 @@
  *********************************************************************************************************************/
 
 
+/**********************************************************************************************************************
+ *  GLOBAL DATA PROTOTYPES
+ *********************************************************************************************************************/
+
  
-#endif  /* INTCTRL_CFG_H */
+/**********************************************************************************************************************
+ *  GLOBAL FUNCTION PROTOTYPES
+ *********************************************************************************************************************/
+
+ 
+#endif  /* FILE_NAME_H */
 
 /**********************************************************************************************************************
- *  END OF FILE: IntCtrl_Cfg.h
+ *  END OF FILE: Std_Types.h
  *********************************************************************************************************************/
